@@ -20,7 +20,7 @@ Execute the provided `schema.sql` file in your MySQL database to create the requ
 Navigate to the backend project directory and run:
 ```bash
 ./mvnw clean spring-boot:run
-
+```
 
 ### 1. Main Interface & Loading Data
 ![Main Interface](./screenshots/load_data.png)
