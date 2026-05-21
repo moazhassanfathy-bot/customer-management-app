@@ -45,11 +45,11 @@ Navigate to the backend project directory and run:
 ## Application Screenshots
 
 ### 1. Main Interface & Loading Data
-![Main Interface](screenshots/Screenshot%202026-05-22%20013849.png)
+![Main Interface](screenshots/load_data.png)
 
 ### 2. Input Validation Error Handling
-![Validation Error](screenshots/Screenshot%202026-05-22%20013935.png)
+![Validation Error](screenshots/validation_error.png)
 
 ### 3. Adding a New Customer Successfully
-![Add Customer](screenshots/Screenshot%202026-05-22%20014011.png)
+![Add Customer](screenshots/add_customer.png)
 
