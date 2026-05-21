@@ -20,3 +20,12 @@ Execute the provided `schema.sql` file in your MySQL database to create the requ
 Navigate to the backend project directory and run:
 ```bash
 ./mvnw clean spring-boot:run
+
+### 1. Main Interface & Loading Data
+![Main Interface](screenshots/load_data.png)
+
+### 2. Input Validation Error Handling
+![Validation Error](screenshots/validation_error.png)
+
+### 3. Adding a New Customer Successfully
+![Add Customer](screenshots/add_customer.png)
