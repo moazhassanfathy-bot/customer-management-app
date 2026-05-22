@@ -25,7 +25,7 @@ public class Customer {
     private String email;
 
     /** Customer's phone number, optional field, max length 50. */
-    @Column(length = 50)
+    @Column(nullable = false ,length = 50)
     private String phone;
 
     /** Timestamp when the record is created. It is non-updatable after generation. */
