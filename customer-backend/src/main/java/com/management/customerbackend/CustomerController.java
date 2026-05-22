@@ -6,19 +6,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST Controller that exposes HTTP endpoints for managing Customer resources.
+ * Acts as the entry point for requests coming from the desktop application.
+ */
 @RestController
 @RequestMapping("/customers")
-@CrossOrigin(origins = "*") // مهمة جداً عشان تسمح لتطبيق الـ Desktop يتصل بدون مشاكل CORS
+@CrossOrigin(origins = "*") // Crucial for allowing connection from the desktop client without CORS blocking
 public class CustomerController {
 
     @Autowired
     private com.management.customerbackend.CustomerService service;
 
+    /**
+     * Retrieves a list of all existing customers from the database.
+     * * @return List of Customer entities
+     */
     @GetMapping
     public List<com.management.customerbackend.Customer> getAllCustomers() {
         return service.getAllCustomers();
     }
 
+    /**
+     * Retrieves a specific customer profile filtered by their unique identification number.
+     * * @param id The identifier of the targeted customer
+     * @return ResponseEntity containing the Customer if found (200 OK), or 404 Not Found status
+     */
     @GetMapping("/{id}")
     public ResponseEntity<com.management.customerbackend.Customer> getCustomerById(@PathVariable Integer id) {
         return service.getCustomerById(id)
@@ -26,11 +39,22 @@ public class CustomerController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * Handles HTTP POST requests to create and persist a new customer record.
+     * * @param customer The JSON payload representing the new customer
+     * @return The freshly persisted Customer entity with its generated database ID
+     */
     @PostMapping
     public com.management.customerbackend.Customer createCustomer(@RequestBody com.management.customerbackend.Customer customer) {
         return service.createCustomer(customer);
     }
 
+    /**
+     * Modifies fields of an already existing customer matching the provided identifier.
+     * * @param id              The identifier of the customer record to alter
+     * @param customerDetails The new values mapped inside the JSON payload request
+     * @return ResponseEntity containing updated Customer entity (200 OK), or 404 Not Found if id doesn't exist
+     */
     @PutMapping("/{id}")
     public ResponseEntity<com.management.customerbackend.Customer> updateCustomer(@PathVariable Integer id, @RequestBody com.management.customerbackend.Customer customerDetails) {
         try {
@@ -40,6 +64,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * Destroys a customer entity completely from the database using its unique identifier.
+     * * @param id The identifier of the customer record to delete
+     * @return ResponseEntity with 204 No Content status upon successful operation, or 404 Not Found
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
         try {
