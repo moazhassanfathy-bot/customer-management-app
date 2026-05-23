@@ -14,13 +14,13 @@ import java.util.Optional;
 public class CustomerService {
 
     @Autowired
-    private com.management.customerbackend.CustomerRepository repository;
+    private CustomerRepository repository;
 
     /**
      * Fetches all customer records available in the database.
      * * @return List of all Customer entities
      */
-    public List<com.management.customerbackend.Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return repository.findAll();
     }
 
@@ -30,7 +30,7 @@ public class CustomerService {
      * * @param id The identifier of the customer
      * @return An Optional containing the Customer if found, or empty Optional if not
      */
-    public Optional<com.management.customerbackend.Customer> getCustomerById(Integer id) {
+    public Optional<Customer> getCustomerById(Integer id) {
         return repository.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class CustomerService {
      * * @param customer The new customer entity payload received
      * @return The saved Customer entity including its generated ID
      */
-    public com.management.customerbackend.Customer createCustomer(com.management.customerbackend.Customer customer) {
+    public Customer createCustomer(com.management.customerbackend.Customer customer) {
         return repository.save(customer);
     }
 
@@ -51,8 +51,8 @@ public class CustomerService {
      * @return The updated and saved Customer entity
      * @throws RuntimeException If no customer record matches the provided ID
      */
-    public com.management.customerbackend.Customer updateCustomer(Integer id, com.management.customerbackend.Customer customerDetails) {
-        com.management.customerbackend.Customer customer = repository.findById(id)
+    public Customer updateCustomer(Integer id, Customer customerDetails) {
+        Customer customer = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
 
         // Mapping updated values to the managed entity
@@ -70,7 +70,7 @@ public class CustomerService {
      * @throws RuntimeException If no customer record matches the provided ID
      */
     public void deleteCustomer(Integer id) {
-        com.management.customerbackend.Customer customer = repository.findById(id)
+      Customer customer = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
         repository.delete(customer);
     }

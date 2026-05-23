@@ -16,14 +16,14 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    private com.management.customerbackend.CustomerService service;
+    private CustomerService service;
 
     /**
      * Retrieves a list of all existing customers from the database.
      * * @return List of Customer entities
      */
     @GetMapping
-    public List<com.management.customerbackend.Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return service.getAllCustomers();
     }
 
@@ -33,7 +33,7 @@ public class CustomerController {
      * @return ResponseEntity containing the Customer if found (200 OK), or 404 Not Found status
      */
     @GetMapping("/{id}")
-    public ResponseEntity<com.management.customerbackend.Customer> getCustomerById(@PathVariable Integer id) {
+    public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
         return service.getCustomerById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -45,7 +45,7 @@ public class CustomerController {
      * @return The freshly persisted Customer entity with its generated database ID
      */
     @PostMapping
-    public com.management.customerbackend.Customer createCustomer(@RequestBody com.management.customerbackend.Customer customer) {
+    public Customer createCustomer(@RequestBody Customer customer) {
         return service.createCustomer(customer);
     }
 
@@ -56,7 +56,7 @@ public class CustomerController {
      * @return ResponseEntity containing updated Customer entity (200 OK), or 404 Not Found if id doesn't exist
      */
     @PutMapping("/{id}")
-    public ResponseEntity<com.management.customerbackend.Customer> updateCustomer(@PathVariable Integer id, @RequestBody com.management.customerbackend.Customer customerDetails) {
+    public ResponseEntity <Customer> updateCustomer(@PathVariable Integer id, @RequestBody Customer customerDetails) {
         try {
             return ResponseEntity.ok(service.updateCustomer(id, customerDetails));
         } catch (RuntimeException e) {

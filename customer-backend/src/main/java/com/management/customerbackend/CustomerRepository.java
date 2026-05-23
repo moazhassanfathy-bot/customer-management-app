@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * Extends JpaRepository to inherit complete CRUD and pagination capabilities from Spring Data JPA.
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<com.management.customerbackend.Customer, Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     // No implementation required! Spring Data JPA automatically generates the underlying SQL queries.
 }
